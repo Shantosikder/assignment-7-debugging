@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Ans Page</title>
+    <style>
+        .blogs{
+            text-align: center;
+            color: green;
+            font-size: 20px;
+        }
+        span{
+            color: green;
+            font-size: 30px;
+        }
+        p{
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="blogs">
+        <h1>Welcome Blogs Page</h1>
+    </header>
+    <main>
+        <section>
+            <h2>1.Difference between <span>map,filter,find,forEach...</span></h2>
+            <p><span>Map:</span>
+                Map method is used to create a new array by transforming each element of an existing array. It applies a given function to each element of the array and returns a new array with the results. The original array is not modified.
+                <pre>Example:
+const numbers = [1, 2, 3, 4, 5];
+const doubledNumbers = numbers.map((number) => number * 2);
+console.log(doubledNumbers); // Output: [2, 4, 6, 8, 10]
+                </pre>
+            </p>
+            <!-- map end  -->
+            <p><span>Filter:</span>
+                Filter method is used to create a new array by filtering out certain elements from an existing array based on a given condition. It applies a given function to each element of the array and returns a new array with only the elements that pass the condition. The original array is not modified.
+                <pre>
+Example:
+const numbers = [1, 2, 3, 4, 5];
+const evenNumbers = numbers.filter((number) => number % 2 === 0);
+console.log(evenNumbers); // Output: [2, 4]
+                </pre>
+            </p>
+            <!-- filter end  -->
+            <p>
+                <span>forEach: </span>
+                    forEach method is used to iterate over an array and perform a given function on each element. It does not create a new array and does not return anything.
+                    <pre>
+Example:
+const numbers = [1, 2, 3, 4, 5];
+numbers.forEach((number) => console.log(number));
+// Output:
+// 1
+// 2
+// 3
+// 4
+// 5
+            </pre>
+            </p>
+            <!-- forEach End  -->
+            <p>
+                <span>Find:</span>
+                find method is used to find the first element in an array that satisfies a given condition. It applies a given function to each element of the array and returns the first element that passes the condition. If no element passes the condition, it returns undefined.
+                <pre>
+Example:
+const numbers = [1, 2, 3, 4, 5];
+const foundNumber = numbers.find((number) => number > 3);
+console.log(foundNumber); // Output: 4
+
+                </pre>
+            </p>
+        </section>
+
+        <!-- first question done  -->
+        <section>
+            <h2>2.Difference between <span>Local storage, Session storage, Cookie...</span></h2>
+            <p>
+                <span>Local storage:</span>
+                local storage API allows you to store data on the client side, persistently, until explicitly removed by the user. The data is stored in the browser and can be accessed by any script from the same origin that has access to the storage API. The data persists even after the browser is closed and reopened.
+                <pre>
+Example:
+localStorage.setItem("myKey", "myValue");
+const myValue = localStorage.getItem("myKey");
+console.log(myValue); // Output: "myValue"
+
+                </pre>
+            </p>
+            <!-- local storage end  -->
+            <p>
+                <span>Session Storage:</span>
+                session storage API is similar to local storage, but the data is stored only for the duration of the user's browsing session. This means that the data is cleared when the user closes the browser or the tab. The data is accessible by any script from the same origin that has access to the storage API.
+                <pre>
+Example:
+sessionStorage.setItem("myKey", "myValue");
+const myValue = sessionStorage.getItem("myKey");
+console.log(myValue); // Output: "myValue"
+                </pre>
+            </p>
+            <!-- session storage done  -->
+
+            <p>
+                <span>Cookies:</span>
+                Cookies: Cookies are small pieces of data that are stored on the client side by the browser. They can be used to store user preferences or session data, and are sent back to the server with every request. Cookies can be set with an expiration time, after which they are automatically removed by the browser. Cookies can be accessed by any script from the same origin that has access to the cookies API.
+                <pre>
+Example:
+// Set a cookie
+document.cookie = "myCookie=myValue; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/";
+// Retrieve a cookie
+const cookies = document.cookie.split("; ");
+const myCookie = cookies.find((cookie) => cookie.startsWith("myCookie="));
+const myValue = myCookie.split("=")[1];
+console.log(myValue); // Output: "myValue"
+                </pre>
+            </p>
+            <p>
+                <Summary>
+                    <span>Summary:</span>
+Local storage and session storage store data using the storage API, while cookies use the cookies API.
+Local storage persists data until explicitly removed by the user, while session storage only persists data for the duration of the browsing session.
+Cookies are automatically sent to the server with every request, while local storage and session storage are not.
+                </Summary>
+            </p>
+        </section>
+        <!-- second question done  -->
+        <section>
+            <h2>3.How to work event loop</h2>
+            <p>
+The event loop is an important part of JavaScript's concurrency model. It is responsible for managing the execution of code in a non-blocking way, allowing JavaScript to handle multiple tasks at once without blocking the main thread.
+Here is a high-level overview of how the event loop works in JavaScript:
+The main thread of the JavaScript runtime executes the code synchronously, line by line, as it is encountered in the script.
+When an asynchronous operation is encountered, such as a network request or a timer, the JavaScript runtime offloads the task to a separate thread, and continues executing the synchronous code.
+When the asynchronous operation completes, a corresponding event is added to the event queue.
+The event loop continuously checks the event queue for events, and when it finds one, it pulls it off the queue and executes the corresponding callback function.
+            <pre>
+Example:
+console.log("start");
+setTimeout(() => {
+  console.log("setTimeout");
+}, 0);
+Promise.resolve().then(() => {
+  console.log("promise");
+});
+console.log("end");
+            </pre>
+            <p>
+                <span>Summary:</span>
+Here is how the event loop processes each part of the code:
+console.log("start") is executed synchronously, and "start" is logged to the console.
+setTimeout is called, which offloads the execution of the callback function to a separate thread, and returns immediately. The main thread continues to execute the next line of code.
+Promise.resolve().then(() => { console.log("promise") }) registers a callback function to be executed when the promise is resolved. Since the promise is immediately resolved, the callback function is added to the event queue.
+console.log("end") is executed synchronously, and "end" is logged to the console.
+The event loop continuously checks the event queue for events, and finds the resolved promise event. The corresponding callback function is pulled off the queue and executed, logging "promise" to the console.
+The event loop continues to check the event queue, and finds the setTimeout event. The corresponding callback function is pulled off the queue and executed, logging "setTimeout" to the console.
+            </p>
+</p>
+        </section>
+
+        <!-- thard question done  -->
+        <section>
+            <h1>4.How to work quizTimer() Function</h1>
+            <p>
+The quizTimer function is designed to be called with a boolean argument of true, it might work like this:
+When the quizTimer function is called with true, it sets the innerHTML of the answersContainer to a loading spinner and text to indicate that the quiz is being checked.
+The function then selects the element with the ID of count and assigns it to the timeTaken variable.
+It initializes totalMark to 0 and grade to an object with two properties: status and color.
+The quizTimer function likely contains additional logic to handle the actual timing and grading of the quiz.
+            </p>
+<h1>4.1.How to work chooseQuiz() Function</h1>
+<p>
+    The chooseQuiz function is used to update the user's answers to the quiz questions. It does this by taking the index of the question that was answered (index) and the answer that was given (givenAns) as parameters.
+
+The function then checks if there is already an object in the answers array with the same id as the question being answered. It does this using the Array.find() method, which searches the answers array for an object that matches the specified condition (ans.id === quizData[index].id).
+
+If an object with the same id is found, the function updates the existing object with the new answer. It does this by using a for...of loop to iterate over the answers array and find the index of the object that needs to be updated. Once the index is found, the function uses the Array.splice() method to replace the existing object with a new object that has the same properties as the original object (...quizData[index]) but with the new answer (givenAns).
+
+If an object with the same id is not found, the function adds a new object to the answers array. The new object is created using the spread operator ({ ...quizData[index], givenAns }), which creates a new object with all the properties of the quizData[index] object (i.e. the question and answer choices) as well as the givenAns property.
+
+Finally, the function calls a displayAnswers function and passes in the updated answers array. The displayAnswers function is not shown in the code you provided, but it likely updates the UI to show the user's selected answers for each question.
+</p>
+        </section>
+    </main>
+</body>
+</html>
